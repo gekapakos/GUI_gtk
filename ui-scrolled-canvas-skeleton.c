@@ -160,23 +160,26 @@ static void resizemaincanvas(GtkWidget *widget, GdkRectangle *gdkrect, gpointer 
 static gboolean maincanvasvscroll(GtkRange *range, GtkScrollType scroll, gdouble value, gpointer data)
 {
   // Get the adjustment of the horizontal scrollbar
-  GtkAdjustment *adjustment = gtk_range_get_adjustment(range);
+  //GtkAdjustment *adjustment = gtk_range_get_adjustment(range);
+
+  adjust_scrollbar = gtk_range_get_adjustment(range);
     
   // Get the current values of the adjustment
-  double lower = gtk_adjustment_get_lower(adjustment);
-  double upper = gtk_adjustment_get_upper(adjustment);
-  double page_size = gtk_adjustment_get_page_size(adjustment);
+  double lower = gtk_adjustment_get_lower(adjust_scrollbar);
+  double upper = gtk_adjustment_get_upper(adjust_scrollbar);
+  double page_size = gtk_adjustment_get_page_size(adjust_scrollbar);
 
-  gtk_adjustment_set_lower(adjustment, lower = -550.0);
-  gtk_adjustment_set_upper(adjustment, upper = 1100.0);
-  gtk_adjustment_set_page_size(adjustment, page_size = 550.0);
+  gtk_adjustment_set_lower(adjust_scrollbar, lower = -maincanvasHeight);
+  gtk_adjustment_set_upper(adjust_scrollbar, upper = maincanvasHeight);
+  //gtk_adjustment_set_page_size(adjust_scrollbar, page_size = 550.0);
 
   // Calculate the maximum x-offset value
   double maxmaincanvasOy = upper;
 
   // Calculate the calibrated x-offset value based on the scrollbar's value
-  int ivalue = (int)((value - lower) / page_size);
+  int ivalue = (int)((value));
 
+  maincanvasOy = ivalue;
   //  #ifdef DEBUGMODE
     {
       printf("DEBUG: Vertical Scroll\n");
@@ -184,32 +187,27 @@ static gboolean maincanvasvscroll(GtkRange *range, GtkScrollType scroll, gdouble
     }
   //  #endif 
 
-  // Print debug information
-  //printf("DEBUG: Horizontal Scroll\n");
-  //printf("DEBUG: Scroll value = %.3f\n", value);
-  //printf("DEBUG: Calculated ivalue = %d\n", ivalue);
-
   // Update the x-offset based on the scroll direction
-  switch (scroll)
+/*  switch (scroll)
   {
     // Scroll down
     case GTK_SCROLL_STEP_BACKWARD:
-      maincanvasOy -= ivalue;
+      maincanvasOy = ivalue;
       printf("Scroll down\n");
       break;
 
     // Scroll up
     case GTK_SCROLL_STEP_FORWARD:
-      maincanvasOy += ivalue;
+      maincanvasOy = ivalue;
       printf("Scroll up\n");
       break;
 
     default:
       break;
   }
-
+*/
   // Perform bounds checking to prevent maincanvasOx from going out of bounds
-  if (maincanvasOy < -550)
+  if (maincanvasOy < -maincanvasHeight)
   {
     maincanvasOy = lower; // Limit minimum value
   }
@@ -219,7 +217,7 @@ static gboolean maincanvasvscroll(GtkRange *range, GtkScrollType scroll, gdouble
   }
 
   // Configure the adjustment with the updated x-offset
-  gtk_adjustment_set_value(adjustment, maincanvasOy);
+  //gtk_adjustment_set_value(adjustment, maincanvasOy);
 
   // Update the canvas display
   gtk_widget_queue_draw(maincanvas);
@@ -229,30 +227,26 @@ static gboolean maincanvasvscroll(GtkRange *range, GtkScrollType scroll, gdouble
 static gboolean maincanvashscroll(GtkRange *range, GtkScrollType scroll, gdouble value, gpointer data)
 {
   // Get the adjustment of the horizontal scrollbar
-  GtkAdjustment *adjustment = gtk_range_get_adjustment(range);
+  adjust_scrollbar = gtk_range_get_adjustment(range);
     
   // Get the current values of the adjustment
-  double lower = gtk_adjustment_get_lower(adjustment);
-  double upper = gtk_adjustment_get_upper(adjustment);
-  double page_size = gtk_adjustment_get_page_size(adjustment);
+  double lower = gtk_adjustment_get_lower(adjust_scrollbar);
+  double upper = gtk_adjustment_get_upper(adjust_scrollbar);
+  double page_size = gtk_adjustment_get_page_size(adjust_scrollbar);
 
-  gtk_adjustment_set_lower(adjustment, lower = -550.0);
-  gtk_adjustment_set_upper(adjustment, upper = 1100.0);
-  gtk_adjustment_set_page_size(adjustment, page_size = 550.0);
+  gtk_adjustment_set_lower(adjust_scrollbar, lower = -maincanvasHeight);
+  gtk_adjustment_set_upper(adjust_scrollbar, upper = maincanvasHeight);
+  //gtk_adjustment_set_page_size(adjust_scrollbar, page_size = 550.0);
 
   // Calculate the maximum x-offset value
   double maxmaincanvasOx = upper;
 
   // Calculate the calibrated x-offset value based on the scrollbar's value
-  int ivalue = (int)((value - lower) / page_size);
+  int ivalue = (int)(value);
 
-  // Print debug information
-  printf("DEBUG: Horizontal Scroll\n");
-  printf("DEBUG: Scroll value = %.3f\n", value);
-  printf("DEBUG: Calculated ivalue = %d\n", ivalue);
-
+  maincanvasOx = ivalue;
   // Update the x-offset based on the scroll direction
-  switch (scroll)
+  /*switch (scroll)
   {
     // Scroll to the left
     case GTK_SCROLL_STEP_BACKWARD:
@@ -268,10 +262,10 @@ static gboolean maincanvashscroll(GtkRange *range, GtkScrollType scroll, gdouble
 
     default:
       break;
-  }
+  }*/
 
   // Perform bounds checking to prevent maincanvasOx from going out of bounds
-  if (maincanvasOx < -550)
+  if (maincanvasOx < -maincanvasWidth)
   {
     maincanvasOx = lower; // Limit minimum value
   }
@@ -280,76 +274,9 @@ static gboolean maincanvashscroll(GtkRange *range, GtkScrollType scroll, gdouble
     maincanvasOx = maxmaincanvasOx; // Limit maximum value
   }
 
-  // Configure the adjustment with the updated x-offset
-  gtk_adjustment_set_value(adjustment, maincanvasOx);
-
   // Update the canvas display
   gtk_widget_queue_draw(maincanvas);
 }
-
-
-
-
-/*static gboolean maincanvashscroll(GtkRange *range, GtkScrollType scroll, gdouble value, gpointer data)
-{
-  double maxmaincanvasOx;
-  int ivalue; // calibrated, inter x-offset value, based on horizontal scrollbar value //
-
-  // Get the range of the horizontal scrollbar
-  GtkAdjustment *adjustment = gtk_range_get_adjustment(GTK_RANGE(range));
-  double lower = gtk_adjustment_get_lower(adjustment);
-  double upper = gtk_adjustment_get_upper(adjustment);
-  double page_size = gtk_adjustment_get_page_size(adjustment);
-  //printf("pg_sz: %lf\n", page_size);
-  // Assign the maximum x-offset value
-  maxmaincanvasOx = upper;
-
-  // Calculate the calibrated x-offset value based on the scrollbar's value
-  ivalue = (int)((value - lower) / page_size);
-  printf("value = %lf, lower = %lf, ivalue = %d\n", value, lower, ivalue);
-
-  //  #ifdef DEBUGMODE
-    {
-      printf("DEBUG: Horizontal Scroll\n");      
-      printf("DEBUG: Scroll value = %.3f\n", value);
-    }
-  //  #endif  
-
-  // horizontal scrollbar code here //
-  switch(scroll)
-  {
-    //Scroll to the left
-    case GTK_SCROLL_STEP_BACKWARD:
-      maincanvasOx -= 1;
-      //printf("lower = %lf, upper = %lf\n", lower, upper);
-      gtk_adjustment_configure(adjustment, maincanvasOx, lower, upper, 1, 0, 10);
-      gtk_widget_queue_draw(maincanvas);
-      printf("Scroll to the left\n");
-      break;
-    
-    //Scroll to the right
-    case GTK_SCROLL_STEP_FORWARD:
-      maincanvasOx += 1;
-      gtk_adjustment_configure(adjustment, maincanvasOx, lower, upper, 1, 0, 10);
-      gtk_widget_queue_draw(maincanvas);
-      printf("Scroll to the right\n");
-      break;
-    
-    default:
-      break;
-  }*/
-
-  // Perform bounds checking to prevent maincanvasOx from going out of bounds
-  /*if (maincanvasOx < 0)
-  {
-    maincanvasOx = 0; // Limit minimum value
-  }
-  else if (maincanvasOx > maxmaincanvasOx)
-  {
-    maincanvasOx = maxmaincanvasOx; // Limit maximum value
-  }*/
-/*
-}*/
 
 //Seems ok let's get it
 static void scroll(GtkWidget *widget, GdkEventScroll *eev, gpointer data)
@@ -381,9 +308,19 @@ static void scroll(GtkWidget *widget, GdkEventScroll *eev, gpointer data)
 void setupscrolladjustments()
 {
   // setup horizontal and vertical scrollbar adjustments //
+  //Horizontal
+  scaledhpagesize = (zoom_level * ((double) maincanvasWidth));
+  hpagesize = ((double) maincanvasWidth);
+  hstep = 0.05 * hpagesize;
+
+  //Vertical
+  scaledvpagesize = (zoom_level * ((double) maincanvasHeight));
+  vpagesize = ((double) maincanvasHeight);
+  vstep = 0.05 * vpagesize;
 
   // use gtk_adjustment_configure() //
-  //gtk_adjustment_configure(0, 0, 0, 0, maincanvasOx, 0, 0);
+  gtk_adjustment_configure(maincanvashscrollbaradjustment, maincanvasOx,/*lower:*/ 0.0,/*upper:*/ scaledhpagesize, /*step_increament:*/hstep, /*page_increament:*/hstep, /*page_size:*/hpagesize);
+  gtk_adjustment_configure(maincanvasvscrollbaradjustment, maincanvasOy,/*lower:*/ 0.0,/*upper:*/ scaledvpagesize, /*step_increament:*/vstep, /*page_increament:*/vstep, /*page_size:*/vpagesize);
 }
 
 static void mousebutton(GtkWidget *widget, GdkEventButton *eev, gpointer data)

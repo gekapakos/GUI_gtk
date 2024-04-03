@@ -12,6 +12,9 @@
 //my variable for zooming in/out
 double zoom_level = 1.0;
 
+//Adjust the scrollbar horizontally and vertically
+GtkAdjustment *adjust_scrollbar;
+
 GtkWidget *maincanvas_scroll; // scrolled window container for main canvas //
 GtkWidget *maincanvas; // main canvas widget // 
 cairo_t *maincanvas_cs; // main canvas cairo state // 

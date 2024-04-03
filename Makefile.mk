@@ -1,0 +1,1 @@
+gcc -g	`pkg-config	--cflags	gtk+-2.0`	`pkg-config	--cflags	gthread-2.0`	ui-scrolled-canvas-skeleton.c	-o	ui-scrolled-canvas-skeleton	-lm	`pkg-config	--libs	gtk+-2.0`	`pkg-config	--libs	gthread-2.0`
