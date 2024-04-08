@@ -9,6 +9,8 @@
 #include <string.h>
 #include <limits.h>
 
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 //my variable for zooming in/out
 double zoom_level = 1.0;
 

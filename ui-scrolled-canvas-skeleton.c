@@ -43,10 +43,10 @@ static void maincanvaspaint(GtkWidget *widget, GdkEventExpose *event, gpointer d
   // Draw rectangles
 
   // Red rectangle
-  double redRectX = (10 * maincanvasWidth / 400) * zoom_level - maincanvasOx;
-  double redRectY = (10 * maincanvasHeight / 400) * zoom_level - maincanvasOy;
-  double redRectWidth = (50 * maincanvasWidth / 400) * zoom_level;
-  double redRectHeight = (50 * maincanvasHeight / 400) * zoom_level;
+  double redRectX = (135 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double redRectY = (330 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double redRectWidth = (50 * maincanvasWidth / 700) * zoom_level;
+  double redRectHeight = (20 * maincanvasHeight / 700) * zoom_level;
 
   cairo_set_source_rgb(maincanvas_cs, 1.0, 0.0, 0.0); // Red color
   cairo_rectangle(maincanvas_cs, redRectX, redRectY, redRectWidth, redRectHeight);
@@ -56,10 +56,10 @@ static void maincanvaspaint(GtkWidget *widget, GdkEventExpose *event, gpointer d
   cairo_stroke(maincanvas_cs);
 
   // Green rectangle
-  double greenRectX = (200 * maincanvasWidth / 400) * zoom_level - maincanvasOx;
-  double greenRectY = (200 * maincanvasHeight / 400) * zoom_level - maincanvasOy;
-  double greenRectWidth = (50 * maincanvasWidth / 400) * zoom_level;
-  double greenRectHeight = (100 * maincanvasHeight / 400) * zoom_level;
+  double greenRectX = (120 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double greenRectY = (350 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double greenRectWidth = (20 * maincanvasWidth / 700) * zoom_level;
+  double greenRectHeight = (45 * maincanvasHeight / 700) * zoom_level;
 
   cairo_set_source_rgb(maincanvas_cs, 0.0, 1.0, 0.0); // Green color
   cairo_rectangle(maincanvas_cs, greenRectX, greenRectY, greenRectWidth, greenRectHeight);
@@ -78,10 +78,10 @@ static void maincanvaspaint(GtkWidget *widget, GdkEventExpose *event, gpointer d
   cairo_stroke(maincanvas_cs);
 
   // Blue rectangle
-  double blueRectX = (100 * maincanvasWidth / 400) * zoom_level - maincanvasOx;
-  double blueRectY = (100 * maincanvasHeight / 400) * zoom_level - maincanvasOy;
-  double blueRectWidth = (50 * maincanvasWidth / 400) * zoom_level;
-  double blueRectHeight = (100 * maincanvasHeight / 400) * zoom_level;
+  double blueRectX = (180 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double blueRectY = (350 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double blueRectWidth = (20 * maincanvasWidth / 700) * zoom_level;
+  double blueRectHeight = (45 * maincanvasHeight / 700) * zoom_level;
 
   cairo_set_source_rgb(maincanvas_cs, 0.0, 0.0, 1.0); // Blue color
   cairo_rectangle(maincanvas_cs, blueRectX, blueRectY, blueRectWidth, blueRectHeight);
@@ -91,10 +91,10 @@ static void maincanvaspaint(GtkWidget *widget, GdkEventExpose *event, gpointer d
   cairo_stroke(maincanvas_cs);
 
   // Light blue rectangle
-  double lightBlueRectX = (250 * maincanvasWidth / 400) * zoom_level - maincanvasOx;
-  double lightBlueRectY = (15 * maincanvasHeight / 400) * zoom_level - maincanvasOy;
-  double lightBlueRectWidth = (150 * maincanvasWidth / 400) * zoom_level;
-  double lightBlueRectHeight = (40 * maincanvasHeight / 400) * zoom_level;
+  double lightBlueRectX = (120 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double lightBlueRectY = (395 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double lightBlueRectWidth = (80 * maincanvasWidth / 700) * zoom_level;
+  double lightBlueRectHeight = (20 * maincanvasHeight / 700) * zoom_level;
 
   cairo_set_source_rgb(maincanvas_cs, 0.0, 1.0, 1.0); // Light blue color
   cairo_rectangle(maincanvas_cs, lightBlueRectX, lightBlueRectY, lightBlueRectWidth, lightBlueRectHeight);
@@ -112,16 +112,147 @@ static void maincanvaspaint(GtkWidget *widget, GdkEventExpose *event, gpointer d
   cairo_stroke(maincanvas_cs);
 
   // Magenta rectangle
-  double magentaRectX = (15 * maincanvasWidth / 400) * zoom_level - maincanvasOx;
-  double magentaRectY = (250 * maincanvasHeight / 400) * zoom_level - maincanvasOy;
-  double magentaRectWidth = (120 * maincanvasWidth / 400) * zoom_level;
-  double magentaRectHeight = (60 * maincanvasHeight / 400) * zoom_level;
+  double magentaRectX = (120 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double magentaRectY = (415 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double magentaRectWidth = (20 * maincanvasWidth / 700) * zoom_level;
+  double magentaRectHeight = (65 * maincanvasHeight / 700) * zoom_level;
 
   cairo_set_source_rgb(maincanvas_cs, 1.0, 0.0, 1.0); // Magenta color
   cairo_rectangle(maincanvas_cs, magentaRectX, magentaRectY, magentaRectWidth, magentaRectHeight);
   cairo_fill(maincanvas_cs);
   cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
   cairo_rectangle(maincanvas_cs, magentaRectX, magentaRectY, magentaRectWidth, magentaRectHeight);
+  cairo_stroke(maincanvas_cs);
+
+  // Magenta rectangle 2
+  double magentaRect2X = (180 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double magentaRect2Y = (415 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double magentaRect2Width = (20 * maincanvasWidth / 700) * zoom_level;
+  double magentaRect2Height = (65 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 0.0, 1.0); // Magenta color
+  cairo_rectangle(maincanvas_cs, magentaRect2X, magentaRect2Y, magentaRect2Width, magentaRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, magentaRect2X, magentaRect2Y, magentaRect2Width, magentaRect2Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Red rectangle 2
+  double redRect2X = (300 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double redRect2Y = (330 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double redRect2Width = (50 * maincanvasWidth / 700) * zoom_level;
+  double redRect2Height = (20 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 0.0, 0.0); // Red color
+  cairo_rectangle(maincanvas_cs, redRect2X, redRect2Y, redRect2Width, redRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, redRect2X, redRect2Y, redRect2Width, redRect2Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Red rectangle 3
+  double redRect3X = (280 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double redRect3Y = (350 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double redRect3Width = (20 * maincanvasWidth / 700) * zoom_level;
+  double redRect3Height = (50 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 0.0, 0.0); // Red color
+  cairo_rectangle(maincanvas_cs, redRect3X, redRect3Y, redRect3Width, redRect3Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, redRect3X, redRect3Y, redRect3Width, redRect3Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Light blue rectangle 2
+  double lightBlueRect2X = (300 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double lightBlueRect2Y = (400 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double lightBlueRect2Width = (50 * maincanvasWidth / 700) * zoom_level;
+  double lightBlueRect2Height = (20 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 0.0, 1.0, 1.0); // Light blue color
+  cairo_rectangle(maincanvas_cs, lightBlueRect2X, lightBlueRect2Y, lightBlueRect2Width, lightBlueRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, lightBlueRect2X, lightBlueRect2Y, lightBlueRect2Width, lightBlueRect2Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Blue rectangle 2
+  double blueRect2X = (350 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double blueRect2Y = (420 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double blueRect2Width = (20 * maincanvasWidth / 700) * zoom_level;
+  double blueRect2Height = (50 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 0.0, 0.0, 1.0); // Blue color
+  cairo_rectangle(maincanvas_cs, blueRect2X, blueRect2Y, blueRect2Width, blueRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, blueRect2X, blueRect2Y, blueRect2Width, blueRect2Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Green rectangle 2
+  double greenRect2X = (300 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double greenRect2Y = (470 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double greenRect2Width = (50 * maincanvasWidth / 700) * zoom_level;
+  double greenRect2Height = (20 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 0.0, 0.5, 0.0); // Deep green color
+  cairo_rectangle(maincanvas_cs, greenRect2X, greenRect2Y, greenRect2Width, greenRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, greenRect2X, greenRect2Y, greenRect2Width, greenRect2Height);
+  cairo_stroke(maincanvas_cs);
+
+
+  // Green rectangle 3
+  double greenRect3X = (460 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double greenRect3Y = (340 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double greenRect3Width = (20 * maincanvasWidth / 700) * zoom_level;
+  double greenRect3Height = (140 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 0.0, 0.5, 0.0); // Deep green color
+  cairo_rectangle(maincanvas_cs, greenRect3X, greenRect3Y, greenRect3Width, greenRect3Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, greenRect3X, greenRect3Y, greenRect3Width, greenRect3Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Orange rectangle 2
+  double orangeRect2X = (480 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double orangeRect2Y = (320 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double orangeRect2Width = (60 * maincanvasWidth / 700) * zoom_level;
+  double orangeRect2Height = (20 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 0.5, 0.0); // Orange color
+  cairo_rectangle(maincanvas_cs, orangeRect2X, orangeRect2Y, orangeRect2Width, orangeRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, orangeRect2X, orangeRect2Y, orangeRect2Width, orangeRect2Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Yellow rectangle 2
+  double yellowRect2X = (480 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double yellowRect2Y = (395 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double yellowRect2Width = (60 * maincanvasWidth / 700) * zoom_level;
+  double yellowRect2Height = (20 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 0.0); // Yellow color
+  cairo_rectangle(maincanvas_cs, yellowRect2X, yellowRect2Y, yellowRect2Width, yellowRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, yellowRect2X, yellowRect2Y, yellowRect2Width, yellowRect2Height);
+  cairo_stroke(maincanvas_cs);
+
+  // Deep purple rectangle 2
+  double purpleRect2X = (540 * maincanvasWidth / 700) * zoom_level - maincanvasOx;
+  double purpleRect2Y = (340 * maincanvasHeight / 700) * zoom_level - maincanvasOy;
+  double purpleRect2Width = (20 * maincanvasWidth / 700) * zoom_level;
+  double purpleRect2Height = (60 * maincanvasHeight / 700) * zoom_level;
+
+  cairo_set_source_rgb(maincanvas_cs, 0.5, 0.0, 0.5); // Deep purple color
+  cairo_rectangle(maincanvas_cs, purpleRect2X, purpleRect2Y, purpleRect2Width, purpleRect2Height);
+  cairo_fill(maincanvas_cs);
+  cairo_set_source_rgb(maincanvas_cs, 1.0, 1.0, 1.0); // White color
+  cairo_rectangle(maincanvas_cs, purpleRect2X, purpleRect2Y, purpleRect2Width, purpleRect2Height);
   cairo_stroke(maincanvas_cs);
 
   cairo_reset_clip(maincanvas_cs);
@@ -335,6 +466,8 @@ static void mousebutton(GtkWidget *widget, GdkEventButton *eev, gpointer data)
     {
       // code here //
       zoom_level = 1.0;
+      maincanvasOx = 0;
+      maincanvasOy = 0;
       printf("zoom back to the original level: %lf\n", zoom_level);
       gtk_widget_queue_draw(widget);
     }
