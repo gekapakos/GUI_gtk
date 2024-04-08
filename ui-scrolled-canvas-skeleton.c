@@ -300,9 +300,9 @@ static gboolean maincanvasvscroll(GtkRange *range, GtkScrollType scroll, gdouble
   double upper = gtk_adjustment_get_upper(adjust_scrollbar);
   double page_size = gtk_adjustment_get_page_size(adjust_scrollbar);
 
-  gtk_adjustment_set_lower(adjust_scrollbar, lower = -maincanvasHeight);
-  gtk_adjustment_set_upper(adjust_scrollbar, upper = maincanvasHeight);
-  //gtk_adjustment_set_page_size(adjust_scrollbar, page_size = 550.0);
+  gtk_adjustment_set_lower(adjust_scrollbar, lower = -550.0);
+  gtk_adjustment_set_upper(adjust_scrollbar, upper = 1100.0);
+  gtk_adjustment_set_page_size(adjust_scrollbar, page_size = 550.0);
 
   // Calculate the maximum x-offset value
   double maxmaincanvasOy = upper;
@@ -338,7 +338,7 @@ static gboolean maincanvasvscroll(GtkRange *range, GtkScrollType scroll, gdouble
   }
 */
   // Perform bounds checking to prevent maincanvasOx from going out of bounds
-  if (maincanvasOy < -maincanvasHeight)
+  if (maincanvasOy < -550)
   {
     maincanvasOy = lower; // Limit minimum value
   }
@@ -365,17 +365,26 @@ static gboolean maincanvashscroll(GtkRange *range, GtkScrollType scroll, gdouble
   double upper = gtk_adjustment_get_upper(adjust_scrollbar);
   double page_size = gtk_adjustment_get_page_size(adjust_scrollbar);
 
-  gtk_adjustment_set_lower(adjust_scrollbar, lower = -maincanvasHeight);
-  gtk_adjustment_set_upper(adjust_scrollbar, upper = maincanvasHeight);
-  //gtk_adjustment_set_page_size(adjust_scrollbar, page_size = 550.0);
+  gtk_adjustment_set_lower(adjust_scrollbar, lower = -550.0);
+  gtk_adjustment_set_upper(adjust_scrollbar, upper = 1100.0);
+  gtk_adjustment_set_page_size(adjust_scrollbar, page_size = 550.0);
 
   // Calculate the maximum x-offset value
   double maxmaincanvasOx = upper;
+  printf("Upper: %lf\n", maxmaincanvasOx);
 
   // Calculate the calibrated x-offset value based on the scrollbar's value
   int ivalue = (int)(value);
 
   maincanvasOx = ivalue;
+
+  //  #ifdef DEBUGMODE
+    {
+      printf("DEBUG: Horizontal Scroll\n");
+      printf("DEBUG: Scroll value = %.3f\n", value);
+    }
+  //  #endif
+
   // Update the x-offset based on the scroll direction
   /*switch (scroll)
   {
@@ -396,7 +405,7 @@ static gboolean maincanvashscroll(GtkRange *range, GtkScrollType scroll, gdouble
   }*/
 
   // Perform bounds checking to prevent maincanvasOx from going out of bounds
-  if (maincanvasOx < -maincanvasWidth)
+  if (maincanvasOx < -550)
   {
     maincanvasOx = lower; // Limit minimum value
   }
@@ -409,7 +418,7 @@ static gboolean maincanvashscroll(GtkRange *range, GtkScrollType scroll, gdouble
   gtk_widget_queue_draw(maincanvas);
 }
 
-//Seems ok let's get it
+//
 static void scroll(GtkWidget *widget, GdkEventScroll *eev, gpointer data)
 {
   //zoom factor helps us zoom-in or zoom-out times or divisions based on this number
@@ -450,8 +459,8 @@ void setupscrolladjustments()
   vstep = 0.05 * vpagesize;
 
   // use gtk_adjustment_configure() //
-  gtk_adjustment_configure(maincanvashscrollbaradjustment, maincanvasOx,/*lower:*/ 0.0,/*upper:*/ scaledhpagesize, /*step_increament:*/hstep, /*page_increament:*/hstep, /*page_size:*/hpagesize);
-  gtk_adjustment_configure(maincanvasvscrollbaradjustment, maincanvasOy,/*lower:*/ 0.0,/*upper:*/ scaledvpagesize, /*step_increament:*/vstep, /*page_increament:*/vstep, /*page_size:*/vpagesize);
+  gtk_adjustment_configure(GTK_ADJUSTMENT(maincanvasvscrollbaradjustment), maincanvasOy, 0.0, scaledvpagesize, vstep, vstep, vpagesize);
+  gtk_adjustment_configure(GTK_ADJUSTMENT(maincanvashscrollbaradjustment), maincanvasOx, 0.0, scaledhpagesize, hstep, hstep, hpagesize);
 }
 
 static void mousebutton(GtkWidget *widget, GdkEventButton *eev, gpointer data)
@@ -468,6 +477,11 @@ static void mousebutton(GtkWidget *widget, GdkEventButton *eev, gpointer data)
       zoom_level = 1.0;
       maincanvasOx = 0;
       maincanvasOy = 0;
+
+      // Configure the changes in the scrollbar when the button is pressed //
+      gtk_adjustment_configure(GTK_ADJUSTMENT(maincanvasvscrollbaradjustment), maincanvasOy, 0.0, scaledvpagesize, vstep, vstep, vpagesize);
+      gtk_adjustment_configure(GTK_ADJUSTMENT(maincanvashscrollbaradjustment), maincanvasOx, 0.0, scaledhpagesize, hstep, hstep, hpagesize);
+
       printf("zoom back to the original level: %lf\n", zoom_level);
       gtk_widget_queue_draw(widget);
     }
